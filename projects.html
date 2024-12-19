@@ -43,64 +43,66 @@
             100% { background-position: 0% 50%; }
         }
 
-        #particles-js {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
+        .container {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+}
 
-        .content-wrapper {
-            position: relative;
-            z-index: 2;
-        }
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
 
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px;
-            z-index: 3;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-        }
+.content-wrapper {
+    position: relative;
+    z-index: 2;
+}
 
-        .logo a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.25rem;
+    z-index: 3;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(0.625rem);
+}
 
-        .intro-section {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 0 20px;
-            position: relative;
-        }
+.logo a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 0.125rem;
+}
 
-        .intro-content {
-            max-width: 800px;
-        }
+.intro-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 1.25rem;
+    position: relative;
+}
 
-        .intro-title {
-            font-size: 5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
+.intro-content {
+    max-width: 50rem;
+}
 
-        .intro-subtitle {
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
+.intro-title {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+  
 
         .scroll-indicator {
             position: absolute;
@@ -118,40 +120,43 @@
         }
 
         /* Yeni ve daha etkileyici Coming Soon stilleri */
-        .coming-soon-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 50px 20px;
-            position: relative;
-            overflow: hidden;
-        }
+        .intro-subtitle {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
 
-        .coming-soon-container {
-            max-width: 1000px;
-            padding: 60px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
+.coming-soon-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3.125rem 1.25rem;
+    position: relative;
+    overflow: hidden;
+}
 
-        .coming-soon-title {
-            font-size: 4.5rem;
-            margin-bottom: 2rem;
-            background: linear-gradient(45deg, #fff, rgba(255, 255, 255, 0.8));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
+.coming-soon-container {
+    max-width: 62.5rem;
+    padding: 3.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 1.875rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(1.25rem);
+    -webkit-backdrop-filter: blur(1.25rem);
+    box-shadow: 0 1.25rem 3.125rem rgba(0, 0, 0, 0.2);
+}
+
+.coming-soon-title {
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(45deg, #fff, rgba(255, 255, 255, 0.8));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 0.125rem;
+}
 
         @keyframes glow {
             from {
@@ -164,14 +169,11 @@
         }
 
         .coming-soon-text {
-            font-size: 1.4rem;
-            line-height: 1.8;
-            margin-bottom: 3rem;
-            color: rgba(255, 255, 255, 0.9);
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+}
 
         .progress-container {
             position: relative;
