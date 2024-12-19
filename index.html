@@ -118,7 +118,15 @@
     line-height: 1.2;
     white-space: nowrap; /* Tek satırda kalmasını sağlar */
 }
-
+.logo a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    cursor: pointer;
+}
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 30px;
@@ -293,7 +301,37 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 15px;
 }
+footer {
+    padding: 30px 20px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+}
 
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.social-links {
+    margin-bottom: 20px;
+}
+
+.social-links a {
+    color: var(--light);
+    margin: 0 15px;
+    font-size: 1.5rem;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.social-links a:hover {
+    color: var(--primary);
+    transform: translateY(-3px);
+}
+
+.contact-link:hover {
+    color: var(--secondary) !important;
+}
 .experience-header {
     display: flex;
     justify-content: space-between;
@@ -349,8 +387,150 @@
 .experience-card:hover {
     transform: translateX(10px);
 }
+.cta {
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: var(--light);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none; /* Link için eklendi */
+    display: inline-block; /* Link için eklendi */
+}
 
-@media (max-width: 768px) {
+.cta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(108, 99, 255, 0.2);
+}
+/* Responsive Tasarım */
+
+/* Büyük Ekranlar (1400px üstü) */
+@media (min-width: 1401px) {
+    .hero h1 {
+        font-size: 5rem;
+    }
+    
+    section {
+        padding: 120px 40px;
+    }
+    
+    .skills {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 40px;
+    }
+}
+
+/* Normal Masaüstü (1200px - 1400px) */
+@media (max-width: 1400px) {
+    section {
+        padding: 100px 30px;
+        max-width: 1200px;
+    }
+    
+    .hero h1 {
+        font-size: 4.5rem;
+    }
+}
+
+/* Küçük Masaüstü ve Tablet Yatay (992px - 1199px) */
+@media (max-width: 1199px) {
+    .hero h1 {
+        font-size: 4rem;
+    }
+    
+    .skills {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+    
+    section {
+        padding: 80px 25px;
+    }
+    
+    .education-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Tablet Dikey (768px - 991px) */
+@media (max-width: 991px) {
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+    
+    nav {
+        padding: 12px 20px;
+    }
+    
+    .logo {
+        font-size: 1.3rem;
+    }
+    
+    nav a {
+        margin: 0 12px;
+        font-size: 0.95rem;
+    }
+    
+    .skills {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .section-title {
+        font-size: 2.2rem;
+    }
+}
+
+/* Büyük Mobil (576px - 767px) */
+@media (max-width: 767px) {
+    header {
+        padding: 15px;
+    }
+    
+    nav {
+        padding: 10px 15px;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    nav div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .hero h1 {
+        font-size: 2.8rem;
+        white-space: normal;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+    
+    .cta {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+    
+    section {
+        padding: 60px 20px;
+    }
+    
+    .skills {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .education-cards {
+        grid-template-columns: 1fr;
+    }
+    
     .experience-card {
         padding: 20px;
     }
@@ -358,69 +538,134 @@
     .experience-header {
         flex-direction: column;
         text-align: center;
+        gap: 10px;
     }
     
-    .experience-header i {
-        margin-top: 10px;
+    .social-links a {
+        font-size: 1.3rem;
+        margin: 0 10px;
     }
+}
 
+/* Küçük Mobil (575px ve altı) */
+@media (max-width: 575px) {
+    .hero h1 {
+        font-size: 2.3rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    nav a {
+        font-size: 0.9rem;
+        margin: 0 8px;
+    }
+    
+    .skill {
+        padding: 20px;
+    }
+    
+    .skill i {
+        font-size: 2.5rem;
+    }
+    
     .experience-details.active {
         padding: 15px;
     }
+    
+    .experience-details p {
+        font-size: 0.9rem;
+    }
+    
+    footer {
+        padding: 25px 15px;
+    }
 }
-        .social-links {
-            margin: 30px 0;
-        }
 
-        .social-links a {
-            color: var(--light);
-            margin: 0 15px;
-            font-size: 1.8rem;
-            transition: 0.3s;
-        }
+/* Çok Küçük Mobil (400px ve altı) */
+@media (max-width: 400px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    nav {
+        padding: 8px 12px;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
+    }
+    
+    nav a {
+        font-size: 0.85rem;
+        margin: 0 6px;
+    }
+    
+    .cta {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+}
 
-        .social-links a:hover {
-            color: var(--primary);
-            transform: translateY(-5px);
-        }
+/* Yüksek DPI Ekranlar için */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
 
-        footer {
-            padding: 50px 20px;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.5);
-        }
+/* Karanlık Mod Tercihi için */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --glass: rgba(255, 255, 255, 0.05);
+    }
+}
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            nav {
-                padding: 10px 20px;
-            }
-            
-            nav a {
-                margin: 0 10px;
-                font-size: 0.9rem;
-            }
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
 
-            .education-cards {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-info {
-                align-items: center;
-                text-align: center;
-            }
-        }
+/* Yatay Ekran Modu için */
+@media (orientation: landscape) and (max-height: 600px) {
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 100px 20px;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    section {
+        padding: 50px 20px;
+    }
+}
     </style>
 </head>
-<body></body>
+<body>
     <div id="particles-js"></div>
     
     <header>
         <nav class="glass">
-            <div class="logo">FATIH SAHIN</div>
+            <div class="logo">
+                <a href="#top" id="logoLink">FATIH SAHIN</a>
+            </div>
             <div>
                 <a href="#about">About</a>
                 <a href="#skills">Skills</a>
@@ -431,13 +676,13 @@
         </nav>
     </header>
 
-    <div class="hero">
+    <section class="hero">
         <div class="hero-content">
             <h1>Building Digital <span class="typed"></span></h1>
             <p>Computer Engineer | Frontend Developer</p>
-            <button class="cta">Explore My Work</button>
+            <a href="projects.html" class="cta">Explore My Work</a>
         </div>
-    </div>
+    </section>
 
     <section id="about" class="glass">
         <h2 class="section-title">About Me</h2>
@@ -555,13 +800,15 @@
             </div>
         </div>
     </section>
-
-    <footer class="glass">
-        <div class="social-links">
-            <a href="https://github.com/sahnfatih" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/fatih-sahin-a35628257" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <footer class="glass" id="contact">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://github.com/sahnfatih" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/fatih-sahin-a35628257" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:fatihsahiinn@outlook.com" class="contact-link"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>&copy; 2024 Fatih SAHIN. All rights reserved.</p>
         </div>
-        <p>&copy; 2024 Fatih SAHIN. All rights reserved.</p>
     </footer>
 
     <script>
