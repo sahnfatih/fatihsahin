@@ -986,6 +986,150 @@ footer {
                 width: 100%;
             }
         }
+        /* Yeni ve daha modern language switcher stilleri */
+.language-switcher {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    perspective: 1000px;
+}
+
+.language-toggle {
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.language-checkbox {
+    opacity: 0;
+    position: absolute;
+}
+
+.language-label {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 30px;
+    padding: 4px;
+    position: relative;
+    cursor: pointer;
+    width: 100px;
+    height: 44px;
+    transform-origin: center;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 
+        0 2px 10px rgba(0, 0, 0, 0.1),
+        0 10px 20px rgba(108, 99, 255, 0.1);
+}
+
+.language-label:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.15),
+        0 15px 25px rgba(108, 99, 255, 0.15);
+}
+
+.language-option {
+    font-size: 15px;
+    font-weight: 600;
+    padding: 5px 10px;
+    z-index: 1;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.5px;
+}
+
+.language-ball {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 24px;
+    position: absolute;
+    width: 44px;
+    height: 36px;
+    top: 4px;
+    left: 4px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 
+        0 2px 5px rgba(0, 0, 0, 0.2),
+        0 5px 10px rgba(108, 99, 255, 0.2),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.1),
+        inset 0 2px 5px rgba(255, 255, 255, 0.2);
+}
+
+/* Checkbox işaretlendiğinde (EN seçili) */
+.language-checkbox:checked + .language-label .language-ball {
+    transform: translateX(48px);
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+}
+
+/* Dil seçeneklerinin renk değişimleri */
+.language-checkbox:not(:checked) + .language-label .language-option.tr {
+    color: white;
+    transform: translateX(2px);
+}
+
+.language-checkbox:not(:checked) + .language-label .language-option.en {
+    color: rgba(255, 255, 255, 0.5);
+    transform: translateX(-2px);
+}
+
+.language-checkbox:checked + .language-label .language-option.en {
+    color: white;
+    transform: translateX(2px);
+}
+
+.language-checkbox:checked + .language-label .language-option.tr {
+    color: rgba(255, 255, 255, 0.5);
+    transform: translateX(-2px);
+}
+
+/* Tıklama animasyonu */
+.language-label:active {
+    transform: scale(0.95);
+}
+
+/* Hover efektleri */
+.language-label:hover .language-ball {
+    box-shadow: 
+        0 4px 10px rgba(108, 99, 255, 0.3),
+        0 0 20px rgba(108, 99, 255, 0.2),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.1),
+        inset 0 2px 5px rgba(255, 255, 255, 0.2);
+}
+
+/* Aktif dil için glow efekti */
+.language-checkbox:checked + .language-label .language-option.en,
+.language-checkbox:not(:checked) + .language-label .language-option.tr {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Mobil uyumluluk */
+@media (max-width: 768px) {
+    .language-switcher {
+        position: relative;
+        top: 0;
+        right: 0;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .language-label {
+        width: 90px;
+        height: 40px;
+    }
+    
+    .language-ball {
+        width: 40px;
+        height: 32px;
+    }
+    
+    .language-checkbox:checked + .language-label .language-ball {
+        transform: translateX(42px);
+    }
+}
         </style>
 </head>
 <body>
@@ -1002,6 +1146,7 @@ footer {
                 <a href="#experience">Experience</a>
                 <a href="#education">Education</a>
                 <a href="#contact">Contact</a>
+                
             </div>
         </nav>
     </header>
@@ -1013,22 +1158,32 @@ footer {
             <a href="projects.html" class="cta">Explore My Work</a>
         </div>
     </section>
-    <section id="about" class="glass">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-container">
-            <div class="about-image">
-                <div class="image-wrapper">
-                    <img src="assets/profile.jpg" alt="Fatih Şahin - Frontend Developer" class="profile-photo">
-                    <div class="image-overlay"></div>
-                </div>
-            </div>
-            <div class="about-content">
-                <p>Hi! I'm Fatih Şahin, a Computer Engineer and passionate Frontend Developer with a keen eye for creating engaging digital experiences. I specialize in modern web technologies and user-centric development.</p>
-                <p>With expertise in HTML, CSS, JavaScript, React, and Vue.js, I've developed various projects that combine aesthetic design with functional excellence. My collaborative spirit, attention to detail, and continuous learning mindset drive me to deliver high-quality solutions.</p>
-                <p>I also have experience in backend technologies like Laravel and Slim PHP, allowing me to build fully integrated web applications. My creative approach and problem-solving skills help me craft innovative solutions for complex challenges.</p>
+  <section id="about" class="glass">
+    <div class="language-switcher">
+        <div class="language-toggle">
+            <input type="checkbox" id="language-checkbox" class="language-checkbox">
+            <label for="language-checkbox" class="language-label">
+                <span class="language-option tr">TR</span>
+                <span class="language-ball"></span>
+                <span class="language-option en">EN</span>
+            </label>
+        </div>
+    </div>
+    <h2 class="section-title" id="aboutTitle">About Me</h2>
+    <div class="about-container">
+        <div class="about-image">
+            <div class="image-wrapper">
+                <img src="assets/profile.jpg" alt="Fatih Şahin - Frontend Developer" class="profile-photo">
+                <div class="image-overlay"></div>
             </div>
         </div>
-    </section>
+        <div class="about-content">
+            <p id="aboutText1">Hi! I'm Fatih Şahin, a Computer Engineer and passionate Frontend Developer with a keen eye for creating engaging digital experiences.</p>
+            <p id="aboutText2">With expertise in HTML, CSS, JavaScript, React, and Vue.js, I've developed various projects that combine aesthetic design with functional excellence.</p>
+            <p id="aboutText3">I also have experience in backend technologies like Laravel and Slim PHP, allowing me to build fully integrated web applications. My creative approach and problem-solving skills help me craft innovative solutions for complex challenges.</p>
+        </div>
+    </div>
+</section>
 
     <section id="skills">
         <h2 class="section-title">Technical Expertise</h2>
@@ -1408,5 +1563,143 @@ async function sendCV(event) {
     }
 }
     </script>
+    <script>
+        // Çeviriler için nesne
+        const translations = {
+            tr: {
+                aboutTitle: "Hakkımda",
+                aboutText1: "Merhaba! Ben Fatih Şahin, etkileyici dijital deneyimler yaratma konusunda tutkulu bir Bilgisayar Mühendisi ve Frontend Geliştiricisiyim.",
+                aboutText2: "HTML, CSS, JavaScript, React ve Vue.js konularında uzmanlığımla, estetik tasarımı fonksiyonel mükemmellikle birleştiren çeşitli projeler geliştirdim.",
+                aboutText3: "Ayrıca Laravel ve Slim PHP gibi backend teknolojilerinde de deneyimim var. Yaratıcı yaklaşımım ve problem çözme becerilerim, karmaşık zorluklar için yenilikçi çözümler üretmeme yardımcı oluyor."
+            },
+            en: {
+                aboutTitle: "About Me",
+                aboutText1: "Hi! I'm Fatih Şahin, a Computer Engineer and passionate Frontend Developer with a keen eye for creating engaging digital experiences.",
+                aboutText2: "With expertise in HTML, CSS, JavaScript, React, and Vue.js, I've developed various projects that combine aesthetic design with functional excellence.",
+                aboutText3: "I also have experience in backend technologies like Laravel and Slim PHP, allowing me to build fully integrated web applications. My creative approach and problem-solving skills help me craft innovative solutions for complex challenges."
+            }
+        };
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const languageCheckbox = document.getElementById('language-checkbox');
+            
+            // Default olarak İngilizce
+            const currentLang = localStorage.getItem('preferred_language') || 'en';
+            languageCheckbox.checked = true; // Default olarak İngilizce (checked)
+            updateContent(currentLang);
+        
+            // Dil değişikliğini dinle
+            languageCheckbox.addEventListener('change', (e) => {
+                const newLang = e.target.checked ? 'en' : 'tr';
+                localStorage.setItem('preferred_language', newLang);
+                updateContent(newLang);
+                
+                // Gelişmiş animasyon efekti
+                const label = document.querySelector('.language-label');
+                const ball = document.querySelector('.language-ball');
+                
+                // Switch animasyonu
+                label.style.transform = 'scale(1.05) rotateY(10deg)';
+                ball.style.boxShadow = '0 4px 15px rgba(108, 99, 255, 0.4)';
+                
+                // Text fade efekti
+                const activeText = document.querySelector(`.language-option.${newLang}`);
+                const inactiveText = document.querySelector(`.language-option.${newLang === 'en' ? 'tr' : 'en'}`);
+                
+                activeText.style.opacity = '0';
+                inactiveText.style.opacity = '0';
+                
+                setTimeout(() => {
+                    activeText.style.opacity = '1';
+                    inactiveText.style.opacity = '0.5';
+                }, 100);
+        
+                // Reset animasyonları
+                setTimeout(() => {
+                    label.style.transform = 'scale(1) rotateY(0)';
+                    ball.style.boxShadow = '';
+                }, 200);
+            });
+        });
+        
+        function updateContent(lang) {
+            // Fade out efekti
+            const elements = ['aboutTitle', 'aboutText1', 'aboutText2', 'aboutText3'];
+            elements.forEach(id => {
+                const element = document.getElementById(id);
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(10px)';
+            });
+        
+            // Kısa bir gecikme sonrası içeriği güncelle ve fade in efekti uygula
+            setTimeout(() => {
+                elements.forEach((id, index) => {
+                    const element = document.getElementById(id);
+                    element.textContent = translations[lang][id];
+                    
+                    // Sıralı fade in animasyonu
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+            }, 200);
+        }
+        
+        // 3D efekti için mouse hareketi
+        document.querySelector('.image-wrapper').addEventListener('mousemove', (e) => {
+            const wrapper = e.currentTarget;
+            const rect = wrapper.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            
+            // Daha yumuşak hareket için lerp fonksiyonu
+            const lerp = (start, end, factor) => start + (end - start) * factor;
+            
+            const rotateY = lerp(wrapper.dataset.rotateY || 0, x * 10, 0.1);
+            const rotateX = lerp(wrapper.dataset.rotateX || 0, -y * 10, 0.1);
+            
+            wrapper.dataset.rotateY = rotateY;
+            wrapper.dataset.rotateX = rotateX;
+            
+            wrapper.style.transform = `
+                perspective(1000px)
+                rotateY(${rotateY}deg)
+                rotateX(${rotateX}deg)
+                scale3d(1.05, 1.05, 1.05)
+            `;
+        });
+        
+        document.querySelector('.image-wrapper').addEventListener('mouseleave', (e) => {
+            const wrapper = e.currentTarget;
+            
+            // Yumuşak reset animasyonu
+            const resetAnimation = () => {
+                const rotateY = lerp(wrapper.dataset.rotateY || 0, 0, 0.1);
+                const rotateX = lerp(wrapper.dataset.rotateX || 0, 0, 0.1);
+                
+                wrapper.dataset.rotateY = rotateY;
+                wrapper.dataset.rotateX = rotateX;
+                
+                wrapper.style.transform = `
+                    perspective(1000px)
+                    rotateY(${rotateY}deg)
+                    rotateX(${rotateX}deg)
+                    scale3d(1, 1, 1)
+                `;
+                
+                if (Math.abs(rotateY) > 0.01 || Math.abs(rotateX) > 0.01) {
+                    requestAnimationFrame(resetAnimation);
+                }
+            };
+            
+            resetAnimation();
+        });
+        
+        // Yardımcı fonksiyon
+        function lerp(start, end, factor) {
+            return start + (end - start) * factor;
+        }
+        </script>
 </body>
 </html>
