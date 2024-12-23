@@ -1,3 +1,2 @@
 User-agent: *
-Allow: /
-Sitemap: https://fatihsahin.online/sitemap.xml
+Allow: /Sitemap: https://fatihsahin.online/sitemap.xml

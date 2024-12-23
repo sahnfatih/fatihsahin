@@ -5,9 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Temel SEO -->
-    <title>Fatih Şahin - Computer Engineer & Frontend Developer</title>
-    <meta name="description" content="Fatih Şahin - Computer Engineer and Frontend Developer specializing in modern web technologies and digital solutions.">
-    <meta name="keywords" content="Fatih Şahin, Computer Engineer, Frontend Developer, Web Development, Turkey">
+    <!-- Temel SEO -->
+    <title>Fatih Şahin - Bilgisayar Mühendisi & Frontend Geliştirici</title>
+    <meta name="description" content="Fatih Şahin - Modern web teknolojileri ve dijital çözümler konusunda uzmanlaşmış Bilgisayar Mühendisi ve Frontend Geliştirici.">
+    <meta name="keywords" content="Fatih Şahin, Bilgisayar Mühendisi, Frontend Developer, Web Geliştirici, React, Vue.js, İstanbul, Türkiye">
+    <meta name="author" content="Fatih Şahin">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://fatihsahin.online">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fatihsahin.online">
+    <meta property="og:title" content="Fatih Şahin - Bilgisayar Mühendisi">
+    <meta property="og:description" content="Yenilikçi dijital deneyimler yaratıyorum">
+    <meta property="og:image" content="https://fatihsahin.online/assets/profile.jpg">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://fatihsahin.online">
+    <meta name="twitter:title" content="Fatih Şahin">
+    <meta name="twitter:description" content="Bilgisayar Mühendisi & Frontend Geliştirici">
+    <meta name="twitter:image" content="https://fatihsahin.online/assets/profile.jpg">
+    
+    <!-- Ek SEO meta etiketleri -->
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#151515">
+    
     
     <link rel="canonical" href="https://fatihsahin.online">
     <meta property="og:title" content="Fatih Şahin - Computer Engineer">
@@ -27,12 +54,48 @@
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
-</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Fatih Şahin",
+            "jobTitle": "Frontend Developer",
+            "url": "https://fatihsahin.online",
+            "sameAs": [
+                "https://github.com/sahnfatih",
+                "https://linkedin.com/in/fatih-sahin-a35628257"
+            ],
+            "image": "https://fatihsahin.online/assets/profile.jpg",
+            "description": "Bilgisayar Mühendisi ve Frontend Geliştirici olarak modern web teknolojileri konusunda uzmanlaşmış profesyonel",
+            "alumniOf": {
+                "@type": "CollegeOrUniversity",
+                "name": "Yalova Üniversitesi"
+            },
+            "knowsAbout": [
+                "Frontend Development",
+                "React.js",
+                "Vue.js",
+                "Laravel",
+                "Web Development"
+            ]
+        }
+        </script>
+        
+        <!-- Sitemap -->
+        <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+        
+        <meta name="google-site-verification" content="your-verification-code">
+
+        <!-- Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXXXXXX');
+        </script>
     <style>
         :root {
             --primary: #6C63FF;
@@ -822,7 +885,6 @@ footer {
 }
     </style>
     <style>
-        /* ... existing styles ... */
         .cta {
     position: relative;
     overflow: hidden;
@@ -1131,6 +1193,294 @@ footer {
     }
 }
         </style>
+
+<style>
+    .education-section {
+        padding: 80px 0;
+        position: relative;
+    }
+
+    .education-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .education-item {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .education-item:nth-child(2) {
+        animation-delay: 0.3s;
+    }
+
+    .edu-card {
+        display: flex;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .edu-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .edu-image-wrapper {
+        flex: 0 0 400px;
+        position: relative;
+        overflow: hidden;
+        
+    }
+
+    .edu-image {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .edu-image img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    .edu-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            45deg,
+            rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.4)
+        );
+        opacity: 0.7;
+        transition: opacity 0.5s ease;
+    }
+
+    .edu-particle-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(circle at center, rgba(255,255,255,0.1) 1px, transparent 1px);
+        background-size: 15px 15px;
+        opacity: 0.3;
+        transition: opacity 0.5s ease;
+    }
+
+    .edu-card:hover .edu-image {
+        transform: scale(1.05);
+    }
+
+    .edu-card:hover .edu-overlay {
+        opacity: 0.4;
+    }
+
+    .edu-card:hover .edu-particle-bg {
+        opacity: 0.6;
+    }
+
+    .edu-content {
+        flex: 1;
+        padding: 40px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .edu-year {
+        display: inline-block;
+        padding: 8px 16px;
+        background: linear-gradient(45deg, var(--gradient-1), var(--gradient-2));
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .edu-content h3 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        background: linear-gradient(45deg, #fff, #ccc);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transform: translateY(0);
+        transition: transform 0.3s ease;
+    }
+
+    .edu-card:hover .edu-content h3 {
+        transform: translateY(-2px);
+    }
+
+    .edu-content h4 {
+        font-size: 1.2rem;
+        color: var(--gradient-1);
+        margin-bottom: 15px;
+        opacity: 0.9;
+        transition: opacity 0.3s ease;
+    }
+
+    .edu-card:hover .edu-content h4 {
+        opacity: 1;
+    }
+
+    .edu-gpa {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .edu-activities {
+        margin-bottom: 25px;
+    }
+
+    .edu-activities p {
+        margin-bottom: 8px;
+        color: rgba(255, 255, 255, 0.8);
+        transform: translateX(0);
+        transition: all 0.3s ease;
+    }
+
+    .edu-card:hover .edu-activities p {
+        transform: translateX(5px);
+        color: rgba(255, 255, 255, 0.95);
+    }
+
+    .edu-skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .edu-skills span {
+        padding: 6px 14px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+    }
+
+    .edu-skills span:hover {
+        background: var(--gradient-1);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 968px) {
+        .edu-card {
+            flex-direction: column;
+        }
+
+        .edu-image-wrapper {
+            height: 300px;
+        }
+
+        .edu-content {
+            padding: 30px;
+        }
+
+        .edu-content h3 {
+            font-size: 1.8rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .edu-content {
+            padding: 20px;
+        }
+
+        .edu-content h3 {
+            font-size: 1.5rem;
+        }
+
+        .edu-skills {
+            gap: 8px;
+        }
+
+        .edu-skills span {
+            padding: 5px 10px;
+            font-size: 0.8rem;
+        }
+    }
+</style>
+<style>
+    .custom-context-menu {
+        display: none;
+        position: fixed;
+        background: rgba(21, 21, 21, 0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 8px 0;
+        min-width: 200px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        animation: scaleIn 0.15s ease-out;
+    }
+     @keyframes scaleIn {
+        from {
+            transform: scale(0.95);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+     .context-menu-item {
+        padding: 10px 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--light);
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+     .context-menu-item i {
+        font-size: 1rem;
+        width: 20px;
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+     .context-menu-item:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateX(5px);
+    }
+     .context-menu-item:not(:last-child) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+</style>
 </head>
 <body>
     <div id="particles-js"></div>
@@ -1270,20 +1620,71 @@ footer {
     </div>
 </section>
 
-    <section id="education">
-        <h2 class="section-title">Education</h2>
-        <div class="education-cards">
-            <div class="education-card glass">
-                <h3>Yalova University</h3>
-                <p>Computer Engineering</p>
-                <p class="date">2019 - 2024</p>
-            </div>
-            <div class="education-card glass">
-                <h3>Atakoy Anatolian High School</h3>
-                <p class="date">2015 - 2019</p>
+<section id="education" class="education-section">
+    <h2 class="section-title">Education Journey</h2>
+    <div class="education-container">
+        <!-- Yalova University -->
+        <div class="education-item">
+            <div class="edu-card glass">
+                <div class="edu-image-wrapper">
+                    <div class="edu-image">
+                        <img src="assets/yalova-universitesi-seeklogo.svg" alt="Yalova University">
+                    </div>
+                    <div class="edu-overlay">
+                        <div class="edu-particle-bg"></div>
+                    </div>
+                </div>
+                <div class="edu-content">
+                    <span class="edu-year">2019 - 2024</span>
+                    <h3>Yalova University</h3>
+                    <h4>Computer Engineering</h4>
+                    <div class="edu-gpa"></div>
+                    <div class="edu-activities">
+                        <p>• Algorithm Analysis and Design Lab Assistant</p>
+                        <p>• Google Developer Student Club Member</p>
+                        <p>• Web Development Team Lead</p>
+                    </div>
+                    <div class="edu-skills">
+                        <span>Data Structures</span>
+                        <span>Web Development</span>
+                        <span>AI & ML</span>
+                        <span>Databases</span>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+
+        <!-- Atakoy High School -->
+        <div class="education-item">
+            <div class="edu-card glass">
+                <div class="edu-image-wrapper">
+                    <div class="edu-image">
+                        <img src="assets/atakoy.png" alt="Atakoy Anatolian High School">
+                    </div>
+                    <div class="edu-overlay">
+                        <div class="edu-particle-bg"></div>
+                    </div>
+                </div>
+                <div class="edu-content">
+                    <span class="edu-year">2015 - 2019</span>
+                    <h3>Ataköy Anatolian High School</h3>
+                    <h4>Science & Mathematics</h4>
+                    <div class="edu-gpa"></div>
+                    <div class="edu-activities">
+                        <p>• Robotics Club Leader</p>
+                        <p>• Mathematics Competition Team</p>
+                        <p>• Science Fair Project Winner</p>
+                    </div>
+                    <div class="edu-skills">
+                        <span>Mathematics</span>
+                        <span>Physics</span>
+                        <span>Robotics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <section id="certificates">
         <h2 class="section-title">Certificates & Achievements</h2>
@@ -1329,7 +1730,64 @@ footer {
             <p>&copy; 2024 Fatih SAHIN. All rights reserved.</p>
         </div>
     </footer>
-
+    <div id="customContextMenu" class="custom-context-menu">
+   <div class="context-menu-item" onclick="requestCV()">
+       <i class="fas fa-file-pdf"></i>
+       CV İste
+   </div>
+   <div class="context-menu-item" onclick="sendEmail()">
+       <i class="fas fa-envelope"></i>
+       Mail Gönder
+   </div>
+   <div class="context-menu-item" onclick="visitGithub()">
+       <i class="fab fa-github"></i>
+       GitHub Profilim
+   </div>
+   <div class="context-menu-item" onclick="visitLinkedin()">
+       <i class="fab fa-linkedin"></i>
+       LinkedIn Profilim
+   </div>
+</div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const educationItems = document.querySelectorAll('.education-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+        
+            educationItems.forEach(item => {
+                observer.observe(item);
+            });
+        
+            // Gelişmiş hover efektleri
+            document.querySelectorAll('.edu-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width - 0.5;
+                    const y = (e.clientY - rect.top) / rect.height - 0.5;
+                    
+                    card.style.transform = `
+                        perspective(1000px)
+                        rotateY(${x * 5}deg)
+                        rotateX(${-y * 5}deg)
+                        translateY(-5px)
+                    `;
+                });
+        
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                });
+            });
+        });
+        </script>
     <script>
         // Particles.js Config
         particlesJS("particles-js", {
@@ -1701,5 +2159,51 @@ async function sendCV(event) {
             return start + (end - start) * factor;
         }
         </script>
+
+<script>
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault(); // Default context menu'yü engelle
+        
+        const contextMenu = document.getElementById('customContextMenu');
+        
+        // Menu pozisyonunu ayarla
+        let x = e.clientX;
+        let y = e.clientY;
+        
+        // Ekran sınırlarını kontrol et
+        const menuWidth = 200; // Yaklaşık menu genişliği
+        const menuHeight = 200; // Yaklaşık menu yüksekliği
+        
+        if (x + menuWidth > window.innerWidth) {
+            x = window.innerWidth - menuWidth;
+        }
+        
+        if (y + menuHeight > window.innerHeight) {
+            y = window.innerHeight - menuHeight;
+        }
+        
+        contextMenu.style.left = x + 'px';
+        contextMenu.style.top = y + 'px';
+        contextMenu.style.display = 'block';
+    });
+     // Başka bir yere tıklandığında menu'yü gizle
+    document.addEventListener('click', function() {
+        document.getElementById('customContextMenu').style.display = 'none';
+    });
+     // Menu fonksiyonları
+    function requestCV() {
+        // CV request form'unu aç veya direkt mail gönder
+        document.getElementById('emailInput').scrollIntoView({ behavior: 'smooth' });
+    }
+     function sendEmail() {
+        window.location.href = 'mailto:fatihsahiinn@outlook.com';
+    }
+     function visitGithub() {
+        window.open('https://github.com/sahnfatih', '_blank');
+    }
+     function visitLinkedin() {
+        window.open('https://linkedin.com/in/fatih-sahin-a35628257', '_blank');
+    }
+</script>
 </body>
 </html>
