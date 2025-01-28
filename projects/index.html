@@ -637,6 +637,141 @@ nav {
         transform: scale(0.7);
     }
 }
+
+    </style>
+
+
+    <style>
+/* Buton stilleri */
+.hero-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    margin-top: 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    background: rgba(108, 99, 255, 0.1);
+    border: 1px solid rgba(108, 99, 255, 0.2);
+    border-radius: 50px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+    cursor: pointer;
+    opacity: 1; /* Bu satırı ekleyin */
+    transform: translateY(0); /* Bu satırı ekleyin */
+}
+
+.button-content {
+    position: relative;
+    z-index: 1;
+    transform: translateX(0);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+    opacity: 1;
+}
+
+.button-glows {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.glow-1,
+.glow-2 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.glow-1 {
+    background: var(--primary-color);
+    width: 100px;
+    height: 100px;
+    left: -20px;
+    top: -50%;
+}
+
+.glow-2 {
+    background: var(--secondary-color);
+    width: 120px;
+    height: 120px;
+    right: -20px;
+    top: -60%;
+}
+
+.button-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(
+        45deg,
+        var(--primary-color),
+        var(--secondary-color)
+    );
+    opacity: 0;
+    transform: scaleX(0.3);
+    transform-origin: left;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.button-icon {
+    position: absolute;
+    right: 2rem;
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+/* Hover Efektleri */
+.hero-button:hover {
+    border-color: var(--primary-color);
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(108, 99, 255, 0.2);
+}
+
+.hero-button:hover .button-content {
+    transform: translateX(-15px);
+}
+
+.hero-button:hover .button-overlay {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+.hero-button:hover .glow-1,
+.hero-button:hover .glow-2 {
+    opacity: 0.5;
+}
+
+.hero-button:hover .button-icon {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Aktif Durum */
+.hero-button:active {
+    transform: scale(0.98);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-button {
+        padding: 1rem 2.5rem;
+        font-size: 1rem;
+    }
+    
+    .button-icon {
+        right: 1.5rem;
+        width: 20px;
+        height: 20px;
+    }
+}
     </style>
 </head>
 <body>
@@ -654,11 +789,17 @@ nav {
             <div class="intro-content">
                 <h1 class="intro-title">Step Into The Future</h1>
                 <p class="intro-subtitle">Where Innovation Meets Design</p>
-            </div>
-            <div class="scroll-indicator">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
-                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
-                </svg>
+                <a href="/works" class="hero-button">
+                    <span class="button-content">View Projects</span>
+                    <span class="button-glows">
+                        <span class="glow-1"></span>
+                        <span class="glow-2"></span>
+                    </span>
+                    <span class="button-overlay"></span>
+                    <svg viewBox="0 0 24 24" class="button-icon">
+                        <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"/>
+                    </svg>
+                </a>
             </div>
         </section>
         <section class="responsive-section">
@@ -955,6 +1096,51 @@ nav {
                 behavior: 'smooth' 
             });
         });
+    </script>
+    <script>
+   // Bu JavaScript kodunu sayfanın en altına ekleyin
+document.addEventListener('DOMContentLoaded', () => {
+    const heroButton = document.querySelector('.hero-button');
+    
+    if (heroButton) {
+        // Mouse takip efekti
+        heroButton.addEventListener('mousemove', (e) => {
+            const rect = heroButton.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const glow1 = heroButton.querySelector('.glow-1');
+            const glow2 = heroButton.querySelector('.glow-2');
+
+            if (glow1 && glow2) {
+                gsap.to(glow1, {
+                    x: x - 50,
+                    y: y - 50,
+                    duration: 0.3
+                });
+                
+                gsap.to(glow2, {
+                    x: x - 60,
+                    y: y - 60,
+                    duration: 0.3
+                });
+            }
+        });
+
+        // Mouse leave efekti
+        heroButton.addEventListener('mouseleave', () => {
+            const glows = heroButton.querySelectorAll('.glow-1, .glow-2');
+            
+            if (glows.length) {
+                gsap.to(glows, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.3
+                });
+            }
+        });
+    }
+});
     </script>
 </body>
 </html>

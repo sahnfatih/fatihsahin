@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Fatih SAHIN</title>
+    <link rel="stylesheet" href="contact.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="particles"></div>
+    
+    <div class="contact-container">
+        <div class="form-wrapper">
+            <h1>Get in Touch</h1>
+            
+            <form id="contact-form">
+                <div class="input-group">
+                    <input type="text" required id="name">
+                    <label for="name">Name</label>
+                    <div class="input-animation"></div>
+                </div>
+
+                <div class="input-group">
+                    <input type="email" required id="email">
+                    <label for="email">Email</label>
+                    <div class="input-animation"></div>
+                </div>
+
+                <div class="input-group">
+                    <textarea required id="message"></textarea>
+                    <label for="message">Message</label>
+                    <div class="input-animation"></div>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span>Send Message</span>
+                    <div class="btn-animation"></div>
+                </button>
+            </form>
+        </div>
+
+        <div class="social-links">
+            <a href="#" class="social-btn" data-platform="github">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+            </a>
+            <a href="#" class="social-btn" data-platform="linkedin">
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn</span>
+            </a>
+            <a href="#" class="social-btn" data-platform="twitter">
+                <i class="fab fa-twitter"></i>
+                <span>Twitter</span>
+            </a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="contact.js"></script>
+</body>
+</html>
