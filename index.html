@@ -55,6 +55,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
 
     <script type="application/ld+json">
         {
@@ -1720,8 +1721,8 @@ footer {
                 <a href="mailto:fatihsahiinn@outlook.com" class="contact-link"><i class="fas fa-envelope"></i></a>
             </div>
             <div class="cv-request-form">
-                <h3>CV'mi İnceleyin</h3>
-                <p>Mail adresinizi bırakın, CV'mi hemen göndereyim:</p>
+                <h3>Review My CV</h3>
+                <p>Leave your email address, I will send my CV immediately:</p>
            <!-- Form kısmı -->
 <form id="cvRequestForm" onsubmit="sendCV(event)">
     <div class="form-group">
@@ -1735,7 +1736,7 @@ footer {
                 <svg class="circular" viewBox="25 25 50 50">
                     <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10"/>
                 </svg>
-                <span class="loading-text">Gönderiliyor</span>
+                <span class="loading-text">Sending</span>
             </span>
         </button>
     </div>
@@ -1748,19 +1749,19 @@ footer {
     <div id="customContextMenu" class="custom-context-menu">
    <div class="context-menu-item" onclick="requestCV()">
        <i class="fas fa-file-pdf"></i>
-       CV İste
+       CV 
    </div>
    <div class="context-menu-item" onclick="sendEmail()">
        <i class="fas fa-envelope"></i>
-       Mail Gönder
+       Send Mail
    </div>
    <div class="context-menu-item" onclick="visitGithub()">
        <i class="fab fa-github"></i>
-       GitHub Profilim
+       GitHub 
    </div>
    <div class="context-menu-item" onclick="visitLinkedin()">
        <i class="fab fa-linkedin"></i>
-       LinkedIn Profilim
+       LinkedIn 
    </div>
 </div>
     <script>
@@ -1961,7 +1962,7 @@ async function sendCV(event) {
         if (response.ok) {
             messageDiv.innerHTML = `<span class="success-message">
                 <i class="fas fa-check-circle"></i> 
-                CV'niz mail adresinize gönderildi! Spam klasörünü kontrol etmeyi unutmayın.
+                Your CV has been sent to your email address! Don't forget to check your spam folder.
             </span>`;
             document.getElementById('emailInput').value = '';
         } else {
@@ -2015,7 +2016,7 @@ async function sendCV(event) {
             messageDiv.innerHTML = `
                 <div class="success-message">
                     <i class="fas fa-check-circle"></i> 
-                    CV'niz mail adresinize gönderildi! Spam klasörünü kontrol etmeyi unutmayın.
+                    Your CV has been sent to your email address! Don't forget to check your spam folder.
                 </div>
             `;
             document.getElementById('emailInput').value = '';
