@@ -1,2 +1,8 @@
 User-agent: *
-Allow: /Sitemap: https://fatihsahin.online/sitemap.xml
+Allow: /
+
+# Sitemap
+Sitemap: https://fatihsahin.online/sitemap.xml
+
+# Crawl-delay (isteğe bağlı - sunucu yükünü azaltmak için)
+Crawl-delay: 1
