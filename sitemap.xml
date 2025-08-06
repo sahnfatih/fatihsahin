@@ -4,7 +4,6 @@
        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
    
-   <!-- Ana Sayfa - En Yüksek Öncelik -->
    <url>
        <loc>https://fatihsahin.online/</loc>
        <lastmod>2024-12-19T12:00:00+00:00</lastmod>
@@ -12,7 +11,6 @@
        <priority>1.0</priority>
    </url>
    
-   <!-- Projeler Sayfası - Yüksek Öncelik -->
    <url>
        <loc>https://fatihsahin.online/works/</loc>
        <lastmod>2024-12-19T12:00:00+00:00</lastmod>
@@ -20,7 +18,6 @@
        <priority>0.9</priority>
    </url>
    
-   <!-- Deneyim Sayfası - Yüksek Öncelik -->
    <url>
        <loc>https://fatihsahin.online/projects/</loc>
        <lastmod>2024-12-19T12:00:00+00:00</lastmod>
@@ -28,7 +25,6 @@
        <priority>0.8</priority>
    </url>
    
-   <!-- İletişim Sayfası - Orta Öncelik -->
    <url>
        <loc>https://fatihsahin.online/contact/</loc>
        <lastmod>2024-12-19T12:00:00+00:00</lastmod>
@@ -36,7 +32,6 @@
        <priority>0.7</priority>
    </url>
    
-   <!-- Frontend Sayfası - Orta Öncelik -->
    <url>
        <loc>https://fatihsahin.online/frontend.html</loc>
        <lastmod>2024-12-19T12:00:00+00:00</lastmod>
@@ -44,7 +39,6 @@
        <priority>0.6</priority>
    </url>
    
-   <!-- 404 Sayfası - Düşük Öncelik -->
    <url>
        <loc>https://fatihsahin.online/404.html</loc>
        <lastmod>2024-12-19T12:00:00+00:00</lastmod>
