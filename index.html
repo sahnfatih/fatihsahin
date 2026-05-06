@@ -65,7 +65,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://unpkg.com/gsap@3.12.2/dist/gsap.min.js"></script>
     <script src="https://unpkg.com/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
@@ -198,9 +198,13 @@
 
         #particles-js {
             position: fixed;
+            inset: 0;
+            z-index: -1;
+        }
+        #particles-js canvas {
             width: 100%;
             height: 100%;
-            z-index: -1;
+            display: block;
         }
 
         .glass {
@@ -234,7 +238,7 @@ nav {
     align-items: center;
     padding: 0.9375rem 1.875rem;
     border-radius: 3.125rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.02);
     backdrop-filter: blur(0.9375rem);
 }
 @media (max-width: 768px) {
@@ -302,6 +306,8 @@ nav a:hover::after {
 .hero-content {
     max-width: 50rem;
     white-space: nowrap;
+    position: relative;
+    z-index: 1;
 
 }
 
@@ -374,44 +380,221 @@ nav a:hover::after {
             -webkit-text-fill-color: transparent;
         }
 
-        .skills {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .skill {
-            padding: 30px;
-            text-align: center;
-            transition: 0.3s;
-            position: relative;
+        .skills-flow {
+            margin-top: 30px;
+            height: 560px;
+            width: min(1400px, 100%);
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 24px;
             overflow: hidden;
         }
-
-        .skill::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        #skills {
+            max-width: 1000px;
             width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        .skills-flow-menu {
+            display: flex;
+            flex-direction: column;
             height: 100%;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            opacity: 0;
-            transition: 0.3s;
-            z-index: -1;
+            width: 100%;
+            max-width: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            align-items: stretch !important;
+            justify-content: flex-start !important;
         }
 
-        .skill:hover::before {
-            opacity: 0.1;
+        .flow-item {
+            flex: 1;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
         }
 
-        .skill i {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .flow-item:first-child {
+            border-top: none;
+        }
+
+        .flow-link {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            color: #ffffff;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: clamp(1.1rem, 2vw, 1.8rem);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .flow-marquee {
+            position: absolute;
+            inset: 0;
+            background: #ffffff;
+            color: #120f17;
+            pointer-events: none;
+            transform: translate3d(0, 101%, 0);
+            overflow: hidden;
+        }
+        .flow-item.is-active .flow-marquee {
+            transform: translate3d(0, 0, 0);
+        }
+
+        .flow-marquee-inner {
+            height: 100%;
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            will-change: transform;
+        }
+
+        .flow-marquee-part {
+            display: inline-flex;
+            align-items: center;
+            flex-shrink: 0;
+            white-space: nowrap;
+            font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0 18px;
+            gap: 10px;
+        }
+        .flow-marquee-part i {
+            font-size: 1.05em;
+        }
+
+        .flow-pill {
+            border: 1px solid #120f17;
+            border-radius: 999px;
+            padding: 8px 14px;
+            line-height: 1;
+            background: rgba(18, 15, 23, 0.06);
+        }
+        .skills-mobile {
+            display: none;
+        }
+        @media (max-width: 767px) {
+            #skills {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+            .skills-flow {
+                display: none;
+            }
+            .skills-mobile {
+                display: grid;
+                gap: 12px;
+                margin-top: 18px;
+            }
+            .skills-mobile-card {
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 14px;
+                background: rgba(18, 15, 23, 0.9);
+                overflow: hidden;
+            }
+            .skills-mobile-head {
+                width: 100%;
+                border: none;
+                outline: none;
+                background: transparent;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 14px 14px;
+                font-weight: 700;
+                letter-spacing: 0.4px;
+                text-transform: uppercase;
+                font-size: 0.96rem;
+                cursor: pointer;
+            }
+            .skills-mobile-head::-webkit-details-marker {
+                display: none;
+            }
+            .skills-mobile-head i:first-child {
+                margin-right: 8px;
+            }
+            .skills-mobile-head i:last-child {
+                transition: transform 0.25s ease;
+            }
+            .skills-mobile-card[open] .skills-mobile-head i:last-child {
+                transform: rotate(180deg);
+            }
+            .skills-mobile-body {
+                padding: 0 12px 12px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .skills-mobile-chip {
+                border: 1px solid rgba(255, 255, 255, 0.22);
+                border-radius: 999px;
+                padding: 6px 10px;
+                color: #fff;
+                font-size: 0.76rem;
+                line-height: 1;
+                white-space: nowrap;
+                background: rgba(255, 255, 255, 0.05);
+            }
+            .skills-flow {
+                height: auto;
+                min-height: 0;
+                border-radius: 16px;
+            }
+            .flow-item {
+                min-height: 76px;
+            }
+            .flow-item.is-active {
+                min-height: 150px;
+            }
+            .flow-link {
+                font-size: 1rem;
+                letter-spacing: 0.5px;
+            }
+            .flow-marquee {
+                position: relative;
+                inset: auto;
+                transform: none;
+                max-height: 0;
+                transition: max-height 0.35s ease;
+                background: #ffffff;
+                pointer-events: auto;
+            }
+            .flow-item.is-active .flow-marquee {
+                max-height: 88px;
+            }
+            .flow-marquee-inner {
+                width: 100%;
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                padding: 8px 10px;
+                gap: 8px;
+            }
+            .flow-marquee-inner::-webkit-scrollbar {
+                display: none;
+            }
+            .flow-marquee-part {
+                font-size: 0.8rem;
+                padding: 0;
+                gap: 8px;
+            }
+            .flow-pill {
+                padding: 6px 10px;
+                white-space: nowrap;
+            }
         }
 
         .timeline {
@@ -608,103 +791,111 @@ footer {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(108, 99, 255, 0.2);
 }
-.about-container {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-    padding: 20px;
-}
-
-.about-image {
-    flex: 0 0 300px;
+#about {
     position: relative;
+    padding-top: 84px;
 }
-
+.about-shell {
+    position: relative;
+    margin-top: 18px;
+    border-radius: 28px;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(108,99,255,0.55), rgba(255,107,107,0.38));
+}
+.about-shell::before {
+    content: '';
+    position: absolute;
+    inset: -28px;
+    z-index: -1;
+    pointer-events: none;
+}
+.about-container {
+    display: block;
+    padding: 24px;
+    border-radius: 26px;
+    background: rgba(10, 10, 14, 0.72);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.about-content::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.about-avatar {
+    float: left;
+    margin: 2px 14px 8px 0;
+}
 .image-wrapper {
     position: relative;
-    border-radius: 20px;
+    width: 96px;
+    height: 96px;
+    border-radius: 999px;
     overflow: hidden;
     transform-style: preserve-3d;
-    perspective: 1000px;
+    transform: perspective(1000px);
+    transition: transform 0.3s ease;
+    border: 2px solid rgba(255,255,255,0.22);
+    box-shadow: 0 6px 24px rgba(108, 99, 255, 0.25);
 }
 .profile-photo {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     display: block;
-    transition: all 0.5s ease;
-    /* Fotoğrafın görsel kalitesini artırmak için filtreler */
-    filter: contrast(102%) brightness(102%);
-    border-radius: 20px;
+    border-radius: 999px;
+    filter: contrast(103%) brightness(104%);
+    transition: transform 0.45s ease;
 }
-
 .image-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Gradient renklerini fotoğrafınıza uygun olarak güncelledim */
-    background: linear-gradient(
-        45deg,
-        rgba(108, 99, 255, 0.1),
-        rgba(255, 107, 107, 0.1)
-    );
-    border-radius: 20px;
-    box-shadow: 
-        0 10px 20px rgba(0,0,0,0.15),
-        inset 0 0 30px rgba(255,255,255,0.05);
+    inset: 0;
+    border-radius: 999px;
+    background: linear-gradient(165deg, rgba(108,99,255,0.12), rgba(255,107,107,0.08));
+    box-shadow: inset 0 0 18px rgba(255,255,255,0.08);
     transition: all 0.3s ease;
 }
-
-.image-wrapper:hover .profile-photo {
-    transform: scale(1.05);
-}
-
+.image-wrapper:hover .profile-photo { transform: scale(1.05); }
 .image-wrapper:hover .image-overlay {
-    background: linear-gradient(
-        45deg,
-        rgba(108, 99, 255, 0.3),
-        rgba(255, 107, 107, 0.3)
-    );
+    background: linear-gradient(165deg, rgba(108,99,255,0.24), rgba(255,107,107,0.14));
 }
-
-.about-content {
-    flex: 1;
-}
-
+.about-content { padding: 2px 4px; }
 .about-content p {
-    margin-bottom: 20px;
-    line-height: 1.8;
-    font-size: 1.1rem;
-    color: var(--light);
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
+    margin-bottom: 15px;
+    line-height: 1.82;
+    font-size: 1.03rem;
+    color: #ececf3;
+    transition: transform 0.25s ease;
 }
-
-.about-content p:hover {
-    transform: translateX(5px);
-}
-
-/* Parallax effect on mouse move */
-.image-wrapper {
-    transform: perspective(1000px);
-    transition: transform 0.3s ease;
-}
-@media (max-width: 768px) {
+.about-content p:hover { transform: translateX(5px); }
+@media (max-width: 991px) {
+    #about { padding-top: 64px; }
     .about-container {
-        flex-direction: column;
-        text-align: center;
+        padding: 20px;
     }
-    
-    .about-image {
-        flex: 0 0 auto;
-        max-width: 250px;
-        margin: 0 auto;
+    .about-avatar {
+        margin-right: 12px;
     }
-    
-    .about-content p:hover {
-        transform: none;
+}
+@media (max-width: 767px) {
+    .about-shell {
+        border-radius: 18px;
+        padding: 1px;
     }
+    .about-container {
+        padding: 16px;
+        border-radius: 17px;
+        text-align: left;
+    }
+    .image-wrapper {
+        width: 78px;
+        height: 78px;
+    }
+    .about-avatar {
+        margin-right: 10px;
+        margin-bottom: 6px;
+    }
+    .about-content p:hover { transform: none; }
 }
 /* Responsive Tasarım */
 
@@ -1557,7 +1748,6 @@ footer {
 </head>
 <body>
     <div id="particles-js"></div>
-    
     <header>
         <nav class="glass">
             <div class="logo">
@@ -1578,59 +1768,75 @@ footer {
         <div class="hero-content">
             <h1>Building Digital <span class="typed"></span></h1>
             <p>Computer Engineer | Frontend Developer</p>
-            <a href="projects/" class="cta">Explore My Work</a>
+            <a href="works/" class="cta">Explore My Work</a>
         </div>
     </section>
-  <section id="about" class="glass">
-    <div class="language-switcher">
-        <div class="language-toggle">
-            <input type="checkbox" id="language-checkbox" class="language-checkbox">
-            <label for="language-checkbox" class="language-label">
-                <span class="language-option tr">TR</span>
-                <span class="language-ball"></span>
-                <span class="language-option en">EN</span>
-            </label>
-        </div>
-    </div>
+  <section id="about">
     <h2 class="section-title" id="aboutTitle">About Me</h2>
-    <div class="about-container">
-        <div class="about-image">
-            <div class="image-wrapper">
-                <img src="assets/profile.jpg" alt="Fatih Şahin - Frontend Developer" class="profile-photo">
-                <div class="image-overlay"></div>
+    <div class="about-shell">
+        <div class="about-container">
+            <div class="about-content">
+                <div class="about-avatar">
+                    <div class="image-wrapper">
+                        <img src="assets/profile.jpg" alt="Fatih Şahin - Frontend Developer" class="profile-photo">
+                        <div class="image-overlay"></div>
+                    </div>
+                </div>
+                <p id="aboutText1">Hi! I'm Fatih Şahin, a Computer Engineer and passionate Frontend Developer with a keen eye for creating engaging digital experiences.</p>
+                <p id="aboutText2">With expertise in HTML, CSS, JavaScript, React, and Vue.js, I've developed various projects that combine aesthetic design with functional excellence.</p>
+                <p id="aboutText3">I also have experience in backend technologies like Laravel and Slim PHP, allowing me to build fully integrated web applications. My creative approach and problem-solving skills help me craft innovative solutions for complex challenges.</p>
             </div>
-        </div>
-        <div class="about-content">
-            <p id="aboutText1">Hi! I'm Fatih Şahin, a Computer Engineer and passionate Frontend Developer with a keen eye for creating engaging digital experiences.</p>
-            <p id="aboutText2">With expertise in HTML, CSS, JavaScript, React, and Vue.js, I've developed various projects that combine aesthetic design with functional excellence.</p>
-            <p id="aboutText3">I also have experience in backend technologies like Laravel and Slim PHP, allowing me to build fully integrated web applications. My creative approach and problem-solving skills help me craft innovative solutions for complex challenges.</p>
         </div>
     </div>
 </section>
 
     <section id="skills">
         <h2 class="section-title">Technical Expertise</h2>
-        <div class="skills">
-            <div class="skill glass">
-                <i class="fab fa-react"></i>
-                <h3>Frontend</h3>
-                <p>React, Vue, HTML</p>
-            </div>
-            <div class="skill glass">
-                <i class="fab fa-laravel"></i>
-                <h3>Backend</h3>
-                <p>Laravel, MySQL</p>
-            </div>
-            <div class="skill glass">
-                <i class="fab fa-java"></i>
-                <h3>Programming</h3>
-                <p>Java, C#</p>
-            </div>
-            <div class="skill glass">
-                <i class="fas fa-mobile-alt"></i>
-                <h3>Mobile</h3>
-                <p>Xamarin Development</p>
-            </div>
+        <div class="skills-flow">
+            <nav class="skills-flow-menu">
+                <div class="flow-item" data-icon="fab fa-react" data-tech="React|Vue|Next.js|TypeScript|Tailwind|HTML|CSS">
+                    <a class="flow-link" href="#"><span>Frontend</span></a>
+                    <div class="flow-marquee"><div class="flow-marquee-inner"></div></div>
+                </div>
+                <div class="flow-item" data-icon="fas fa-server" data-tech="Laravel|Node.js|Express|REST API|PHP|MySQL|PostgreSQL">
+                    <a class="flow-link" href="#"><span>Backend</span></a>
+                    <div class="flow-marquee"><div class="flow-marquee-inner"></div></div>
+                </div>
+                <div class="flow-item" data-icon="fas fa-code" data-tech="Java|C#|JavaScript|Python|OOP|Data Structures|Algorithms">
+                    <a class="flow-link" href="#"><span>Programming</span></a>
+                    <div class="flow-marquee"><div class="flow-marquee-inner"></div></div>
+                </div>
+                <div class="flow-item" data-icon="fas fa-mobile-alt" data-tech="Xamarin|React Native|Android|iOS|Responsive UI|App UX|Firebase">
+                    <a class="flow-link" href="#"><span>Mobile</span></a>
+                    <div class="flow-marquee"><div class="flow-marquee-inner"></div></div>
+                </div>
+            </nav>
+        </div>
+        <div class="skills-mobile">
+            <details class="skills-mobile-card" open>
+                <summary class="skills-mobile-head"><span><i class="fab fa-react"></i>Frontend</span><i class="fas fa-chevron-down"></i></summary>
+                <div class="skills-mobile-body">
+                    <span class="skills-mobile-chip">React</span><span class="skills-mobile-chip">Vue</span><span class="skills-mobile-chip">Next.js</span><span class="skills-mobile-chip">TypeScript</span><span class="skills-mobile-chip">Tailwind</span><span class="skills-mobile-chip">HTML</span><span class="skills-mobile-chip">CSS</span>
+                </div>
+            </details>
+            <details class="skills-mobile-card">
+                <summary class="skills-mobile-head"><span><i class="fas fa-server"></i>Backend</span><i class="fas fa-chevron-down"></i></summary>
+                <div class="skills-mobile-body">
+                    <span class="skills-mobile-chip">Laravel</span><span class="skills-mobile-chip">Node.js</span><span class="skills-mobile-chip">Express</span><span class="skills-mobile-chip">REST API</span><span class="skills-mobile-chip">PHP</span><span class="skills-mobile-chip">MySQL</span><span class="skills-mobile-chip">PostgreSQL</span>
+                </div>
+            </details>
+            <details class="skills-mobile-card">
+                <summary class="skills-mobile-head"><span><i class="fas fa-code"></i>Programming</span><i class="fas fa-chevron-down"></i></summary>
+                <div class="skills-mobile-body">
+                    <span class="skills-mobile-chip">Java</span><span class="skills-mobile-chip">C#</span><span class="skills-mobile-chip">JavaScript</span><span class="skills-mobile-chip">Python</span><span class="skills-mobile-chip">OOP</span><span class="skills-mobile-chip">Data Structures</span><span class="skills-mobile-chip">Algorithms</span>
+                </div>
+            </details>
+            <details class="skills-mobile-card">
+                <summary class="skills-mobile-head"><span><i class="fas fa-mobile-alt"></i>Mobile</span><i class="fas fa-chevron-down"></i></summary>
+                <div class="skills-mobile-body">
+                    <span class="skills-mobile-chip">Xamarin</span><span class="skills-mobile-chip">React Native</span><span class="skills-mobile-chip">Android</span><span class="skills-mobile-chip">iOS</span><span class="skills-mobile-chip">Responsive UI</span><span class="skills-mobile-chip">App UX</span><span class="skills-mobile-chip">Firebase</span>
+                </div>
+            </details>
         </div>
     </section>
 
@@ -1881,31 +2087,109 @@ footer {
         });
         </script>
     <script>
-        // Particles.js Config
-        particlesJS("particles-js", {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: "#6C63FF" },
-                shape: { type: "circle" },
-                opacity: { value: 0.5, random: false },
-                size: { value: 3, random: true },
-                line_linked: { enable: true, distance: 150, color: "#6C63FF", opacity: 0.4, width: 1 },
-                move: { enable: true, speed: 6, direction: "none", random: false, straight: false, out_mode: "out", bounce: false }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: { 
-                    onhover: { enable: true, mode: "repulse" }, 
-                    onclick: { enable: true, mode: "push" }, 
-                    resize: true 
-                },
-                modes: { 
-                    repulse: { distance: 100, duration: 0.4 }, 
-                    push: { particles_nb: 4 } 
-                }
-            },
-            retina_detect: true
-        });
+        function initLiquidBackground() {
+            const mount = document.getElementById('particles-js');
+            if (!mount || !window.THREE) return;
+
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            mount.innerHTML = '';
+            mount.appendChild(renderer.domElement);
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+            const palette = ['#5227FF', '#FF9FFC', '#B497CF'];
+
+            const uniforms = {
+                uTime: { value: 0 },
+                uPointer: { value: new THREE.Vector2(0.5, 0.5) },
+                uPointerStrength: { value: 0 },
+                uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+                uColorA: { value: new THREE.Color(palette[0]) },
+                uColorB: { value: new THREE.Color(palette[1]) },
+                uColorC: { value: new THREE.Color(palette[2]) }
+            };
+
+            const material = new THREE.ShaderMaterial({
+                transparent: true,
+                uniforms,
+                vertexShader: `
+                    varying vec2 vUv;
+                    void main() {
+                        vUv = uv;
+                        gl_Position = vec4(position.xy, 0.0, 1.0);
+                    }
+                `,
+                fragmentShader: `
+                    precision highp float;
+                    varying vec2 vUv;
+                    uniform float uTime;
+                    uniform vec2 uPointer;
+                    uniform float uPointerStrength;
+                    uniform vec2 uResolution;
+                    uniform vec3 uColorA;
+                    uniform vec3 uColorB;
+                    uniform vec3 uColorC;
+
+                    float hash(vec2 p){return fract(sin(dot(p, vec2(127.1,311.7))) * 43758.5453);}
+                    float noise(vec2 p){
+                        vec2 i = floor(p), f = fract(p);
+                        vec2 u = f*f*(3.0-2.0*f);
+                        return mix(mix(hash(i), hash(i+vec2(1,0)), u.x), mix(hash(i+vec2(0,1)), hash(i+vec2(1,1)), u.x), u.y);
+                    }
+                    float fbm(vec2 p){
+                        float v=0.0,a=0.5;
+                        for(int i=0;i<5;i++){v+=a*noise(p); p*=2.0; a*=0.5;}
+                        return v;
+                    }
+                    void main(){
+                        vec2 uv = vUv;
+                        float aspect = uResolution.x / max(uResolution.y,1.0);
+                        vec2 p = (uv - 0.5) * vec2(aspect, 1.0);
+                        vec2 m = (uPointer - 0.5) * vec2(aspect, 1.0);
+                        float d = length(p - m);
+                        float pulse = exp(-7.0 * d) * uPointerStrength;
+                        float t = uTime * 0.22;
+                        vec2 flow = vec2(fbm(p*2.2 + vec2(0.0,t)), fbm(p*2.2 + vec2(2.8,-t)));
+                        float liquid = fbm((p + flow * 0.65 + pulse * 0.42) * 2.8 + t);
+                        vec3 col = mix(uColorA, uColorB, smoothstep(0.22, 0.76, liquid));
+                        col = mix(col, uColorC, smoothstep(0.60, 1.0, liquid + pulse * 0.22));
+                        col += pulse * vec3(0.08, 0.05, 0.12);
+                        float ink = smoothstep(0.46, 0.9, liquid + pulse * 0.35);
+                        float alpha = clamp(ink * 0.72, 0.0, 0.72);
+                        vec3 finalCol = mix(vec3(0.0), col, ink);
+                        gl_FragColor = vec4(finalCol, alpha);
+                    }
+                `
+            });
+
+            scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material));
+
+            const onMove = (clientX, clientY) => {
+                uniforms.uPointer.value.set(clientX / window.innerWidth, 1.0 - clientY / window.innerHeight);
+                uniforms.uPointerStrength.value = 1.0;
+            };
+            window.addEventListener('mousemove', e => onMove(e.clientX, e.clientY), { passive: true });
+            window.addEventListener('touchmove', e => {
+                if (!e.touches || !e.touches[0]) return;
+                onMove(e.touches[0].clientX, e.touches[0].clientY);
+            }, { passive: true });
+            window.addEventListener('resize', () => {
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                uniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
+            });
+
+            const clock = new THREE.Clock();
+            (function animate() {
+                uniforms.uTime.value = clock.getElapsedTime();
+                uniforms.uPointerStrength.value = Math.max(0.0, uniforms.uPointerStrength.value * 0.968);
+                renderer.render(scene, camera);
+                requestAnimationFrame(animate);
+            })();
+        }
+
+        initLiquidBackground();
         function toggleDetails(element) {
     const card = element.closest('.experience-card');
     const details = card.querySelector('.experience-details');
@@ -1958,7 +2242,7 @@ window.addEventListener('resize', () => {
             ease: "power4.out"
         });
 
-        gsap.utils.toArray(".skill").forEach(skill => {
+        gsap.utils.toArray(".flow-item").forEach(skill => {
             gsap.from(skill, {
                 scrollTrigger: {
                     trigger: skill,
@@ -1971,6 +2255,140 @@ window.addEventListener('resize', () => {
                 ease: "power2.out"
             });
         });
+
+        (function initSkillsFlowMenu() {
+            const items = document.querySelectorAll('.flow-item');
+            if (!items.length) return;
+            const isTouchLike = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+            if (isTouchLike) {
+                const mobileCards = document.querySelectorAll('.skills-mobile-card');
+                mobileCards.forEach(card => {
+                    card.addEventListener('toggle', () => {
+                        if (!card.open) return;
+                        mobileCards.forEach(other => {
+                            if (other !== card) other.open = false;
+                        });
+                    });
+                });
+            }
+
+            const distance = (x1, y1, x2, y2) => {
+                const dx = x1 - x2;
+                const dy = y1 - y2;
+                return dx * dx + dy * dy;
+            };
+
+            const closestEdge = (x, y, width, height) => {
+                const top = distance(x, y, width / 2, 0);
+                const bottom = distance(x, y, width / 2, height);
+                return top < bottom ? 'top' : 'bottom';
+            };
+
+            items.forEach(item => {
+                const marquee = item.querySelector('.flow-marquee');
+                const inner = item.querySelector('.flow-marquee-inner');
+                const iconClass = item.dataset.icon || 'fas fa-code';
+                const tech = (item.dataset.tech || '').split('|').filter(Boolean);
+                if (!marquee || !inner || !tech.length) return;
+
+                inner.innerHTML = '';
+                if (isTouchLike) {
+                    const part = document.createElement('div');
+                    part.className = 'flow-marquee-part';
+                    part.innerHTML = tech
+                        .map(t => `<i class="${iconClass}" aria-hidden="true"></i><span class="flow-pill">${t}</span>`)
+                        .join('');
+                    inner.appendChild(part);
+                } else {
+                    const partHtml = tech
+                        .map(t => `<i class="${iconClass}" aria-hidden="true"></i><span class="flow-pill">${t}</span>`)
+                        .join('');
+                    for (let i = 0; i < 8; i++) {
+                        const part = document.createElement('div');
+                        part.className = 'flow-marquee-part';
+                        part.innerHTML = partHtml;
+                        inner.appendChild(part);
+                    }
+                }
+
+                const partWidth = () => {
+                    const first = inner.querySelector('.flow-marquee-part');
+                    return first ? first.offsetWidth : 200;
+                };
+
+                let tween = null;
+                const startTicker = () => {
+                    if (isTouchLike) return;
+                    if (tween) tween.kill();
+                    gsap.set(inner, { x: 0 });
+                    tween = gsap.to(inner, {
+                        x: -partWidth(),
+                        duration: 15,
+                        ease: 'none',
+                        repeat: -1
+                    });
+                };
+                startTicker();
+                window.addEventListener('resize', startTicker, { passive: true });
+
+                const openMarquee = edge => {
+                    item.classList.add('is-active');
+                    gsap.timeline({ defaults: { duration: 0.6, ease: 'expo.out' } })
+                        .set(marquee, { y: edge === 'top' ? '-101%' : '101%' }, 0)
+                        .to(marquee, { y: '0%' }, 0);
+                };
+
+                const closeMarquee = edge => {
+                    item.classList.remove('is-active');
+                    gsap.to(marquee, {
+                        y: edge === 'top' ? '-101%' : '101%',
+                        duration: 0.55,
+                        ease: 'expo.out'
+                    });
+                };
+
+                if (!isTouchLike) {
+                    item.addEventListener('mouseenter', ev => {
+                        const rect = item.getBoundingClientRect();
+                        const edge = closestEdge(ev.clientX - rect.left, ev.clientY - rect.top, rect.width, rect.height);
+                        items.forEach(other => {
+                            if (other === item) return;
+                            const otherMarquee = other.querySelector('.flow-marquee');
+                            other.classList.remove('is-active');
+                            if (otherMarquee) gsap.to(otherMarquee, { y: '101%', duration: 0.35, ease: 'expo.out' });
+                        });
+                        openMarquee(edge);
+                    });
+
+                    item.addEventListener('mouseleave', ev => {
+                        const rect = item.getBoundingClientRect();
+                        const edge = closestEdge(ev.clientX - rect.left, ev.clientY - rect.top, rect.width, rect.height);
+                        closeMarquee(edge);
+                    });
+                }
+
+                const link = item.querySelector('.flow-link');
+                if (link) {
+                    link.addEventListener('click', ev => {
+                        ev.preventDefault();
+                        if (!isTouchLike) return;
+                        const active = item.classList.contains('is-active');
+                        items.forEach(other => {
+                            if (other === item) return;
+                            const otherMarquee = other.querySelector('.flow-marquee');
+                            other.classList.remove('is-active');
+                            if (otherMarquee) gsap.to(otherMarquee, { y: '101%', duration: 0.45, ease: 'expo.out' });
+                        });
+                        if (active) {
+                            closeMarquee('bottom');
+                        } else {
+                            openMarquee('bottom');
+                        }
+                    });
+                }
+            });
+        })();
 
         gsap.utils.toArray(".experience-card").forEach(card => {
             gsap.from(card, {
@@ -2114,143 +2532,34 @@ async function sendCV(event) {
 }
     </script>
     <script>
-        // Çeviriler için nesne
-        const translations = {
-            tr: {
-                aboutTitle: "Hakkımda",
-                aboutText1: "Merhaba! Ben Fatih Şahin, etkileyici dijital deneyimler yaratma konusunda tutkulu bir Bilgisayar Mühendisi ve Frontend Geliştiricisiyim.",
-                aboutText2: "HTML, CSS, JavaScript, React ve Vue.js konularında uzmanlığımla, estetik tasarımı fonksiyonel mükemmellikle birleştiren çeşitli projeler geliştirdim.",
-                aboutText3: "Ayrıca Laravel ve Slim PHP gibi backend teknolojilerinde de deneyimim var. Yaratıcı yaklaşımım ve problem çözme becerilerim, karmaşık zorluklar için yenilikçi çözümler üretmeme yardımcı oluyor."
-            },
-            en: {
-                aboutTitle: "About Me",
-                aboutText1: "Hi! I'm Fatih Şahin, a Computer Engineer and passionate Frontend Developer with a keen eye for creating engaging digital experiences.",
-                aboutText2: "With expertise in HTML, CSS, JavaScript, React, and Vue.js, I've developed various projects that combine aesthetic design with functional excellence.",
-                aboutText3: "I also have experience in backend technologies like Laravel and Slim PHP, allowing me to build fully integrated web applications. My creative approach and problem-solving skills help me craft innovative solutions for complex challenges."
-            }
-        };
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            const languageCheckbox = document.getElementById('language-checkbox');
-            
-            // Default olarak İngilizce
-            const currentLang = localStorage.getItem('preferred_language') || 'en';
-            languageCheckbox.checked = true; // Default olarak İngilizce (checked)
-            updateContent(currentLang);
-        
-            // Dil değişikliğini dinle
-            languageCheckbox.addEventListener('change', (e) => {
-                const newLang = e.target.checked ? 'en' : 'tr';
-                localStorage.setItem('preferred_language', newLang);
-                updateContent(newLang);
-                
-                // Gelişmiş animasyon efekti
-                const label = document.querySelector('.language-label');
-                const ball = document.querySelector('.language-ball');
-                
-                // Switch animasyonu
-                label.style.transform = 'scale(1.05) rotateY(10deg)';
-                ball.style.boxShadow = '0 4px 15px rgba(108, 99, 255, 0.4)';
-                
-                // Text fade efekti
-                const activeText = document.querySelector(`.language-option.${newLang}`);
-                const inactiveText = document.querySelector(`.language-option.${newLang === 'en' ? 'tr' : 'en'}`);
-                
-                activeText.style.opacity = '0';
-                inactiveText.style.opacity = '0';
-                
-                setTimeout(() => {
-                    activeText.style.opacity = '1';
-                    inactiveText.style.opacity = '0.5';
-                }, 100);
-        
-                // Reset animasyonları
-                setTimeout(() => {
-                    label.style.transform = 'scale(1) rotateY(0)';
-                    ball.style.boxShadow = '';
-                }, 200);
+        // About image 3D hover effect (EN-only page)
+        const aboutImageWrapper = document.querySelector('.image-wrapper');
+        const lerp = (start, end, factor) => start + (end - start) * factor;
+        if (aboutImageWrapper) {
+            aboutImageWrapper.addEventListener('mousemove', e => {
+                const rect = aboutImageWrapper.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                const rotateY = lerp(Number(aboutImageWrapper.dataset.rotateY || 0), x * 10, 0.1);
+                const rotateX = lerp(Number(aboutImageWrapper.dataset.rotateX || 0), -y * 10, 0.1);
+                aboutImageWrapper.dataset.rotateY = rotateY;
+                aboutImageWrapper.dataset.rotateX = rotateX;
+                aboutImageWrapper.style.transform = `perspective(1000px) rotateY(${rotateY}deg) rotateX(${rotateX}deg) scale3d(1.05, 1.05, 1.05)`;
             });
-        });
-        
-        function updateContent(lang) {
-            // Fade out efekti
-            const elements = ['aboutTitle', 'aboutText1', 'aboutText2', 'aboutText3'];
-            elements.forEach(id => {
-                const element = document.getElementById(id);
-                element.style.opacity = '0';
-                element.style.transform = 'translateY(10px)';
+
+            aboutImageWrapper.addEventListener('mouseleave', () => {
+                const resetAnimation = () => {
+                    const rotateY = lerp(Number(aboutImageWrapper.dataset.rotateY || 0), 0, 0.1);
+                    const rotateX = lerp(Number(aboutImageWrapper.dataset.rotateX || 0), 0, 0.1);
+                    aboutImageWrapper.dataset.rotateY = rotateY;
+                    aboutImageWrapper.dataset.rotateX = rotateX;
+                    aboutImageWrapper.style.transform = `perspective(1000px) rotateY(${rotateY}deg) rotateX(${rotateX}deg) scale3d(1, 1, 1)`;
+                    if (Math.abs(rotateY) > 0.01 || Math.abs(rotateX) > 0.01) requestAnimationFrame(resetAnimation);
+                };
+                resetAnimation();
             });
-        
-            // Kısa bir gecikme sonrası içeriği güncelle ve fade in efekti uygula
-            setTimeout(() => {
-                elements.forEach((id, index) => {
-                    const element = document.getElementById(id);
-                    element.textContent = translations[lang][id];
-                    
-                    // Sıralı fade in animasyonu
-                    setTimeout(() => {
-                        element.style.opacity = '1';
-                        element.style.transform = 'translateY(0)';
-                    }, index * 100);
-                });
-            }, 200);
         }
-        
-        // 3D efekti için mouse hareketi
-        document.querySelector('.image-wrapper').addEventListener('mousemove', (e) => {
-            const wrapper = e.currentTarget;
-            const rect = wrapper.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
-            
-            // Daha yumuşak hareket için lerp fonksiyonu
-            const lerp = (start, end, factor) => start + (end - start) * factor;
-            
-            const rotateY = lerp(wrapper.dataset.rotateY || 0, x * 10, 0.1);
-            const rotateX = lerp(wrapper.dataset.rotateX || 0, -y * 10, 0.1);
-            
-            wrapper.dataset.rotateY = rotateY;
-            wrapper.dataset.rotateX = rotateX;
-            
-            wrapper.style.transform = `
-                perspective(1000px)
-                rotateY(${rotateY}deg)
-                rotateX(${rotateX}deg)
-                scale3d(1.05, 1.05, 1.05)
-            `;
-        });
-        
-        document.querySelector('.image-wrapper').addEventListener('mouseleave', (e) => {
-            const wrapper = e.currentTarget;
-            
-            // Yumuşak reset animasyonu
-            const resetAnimation = () => {
-                const rotateY = lerp(wrapper.dataset.rotateY || 0, 0, 0.1);
-                const rotateX = lerp(wrapper.dataset.rotateX || 0, 0, 0.1);
-                
-                wrapper.dataset.rotateY = rotateY;
-                wrapper.dataset.rotateX = rotateX;
-                
-                wrapper.style.transform = `
-                    perspective(1000px)
-                    rotateY(${rotateY}deg)
-                    rotateX(${rotateX}deg)
-                    scale3d(1, 1, 1)
-                `;
-                
-                if (Math.abs(rotateY) > 0.01 || Math.abs(rotateX) > 0.01) {
-                    requestAnimationFrame(resetAnimation);
-                }
-            };
-            
-            resetAnimation();
-        });
-        
-        // Yardımcı fonksiyon
-        function lerp(start, end, factor) {
-            return start + (end - start) * factor;
-        }
-        </script>
+    </script>
 
 <script>
     document.addEventListener('contextmenu', function(e) {
